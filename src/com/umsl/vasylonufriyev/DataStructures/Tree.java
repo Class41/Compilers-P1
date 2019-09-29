@@ -32,7 +32,7 @@ public class Tree {
         fs.write(node.key + " ");
 
         for (Object s : node.values) {
-            fs.write((String) s + " ");
+            fs.write(s + " ");
         }
 
         fs.write("\n");
@@ -49,7 +49,7 @@ public class Tree {
         fs.write(node.key + " ");
 
         for (Object s : node.values) {
-            fs.write((String) s + " ");
+            fs.write(s + " ");
         }
 
         fs.write("\n");
@@ -66,7 +66,7 @@ public class Tree {
         fs.write(node.key + " ");
 
         for (Object s : node.values) {
-            fs.write((String) s + " ");
+            fs.write(s + " ");
         }
 
         fs.write("\n");

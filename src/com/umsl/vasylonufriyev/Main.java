@@ -8,6 +8,7 @@ Description: Initial point of the program--contains the main function and comman
 
 package com.umsl.vasylonufriyev;
 
+import com.umsl.vasylonufriyev.DataStructures.ProgramDataBuffer;
 import com.umsl.vasylonufriyev.DataStructures.Tree;
 import com.umsl.vasylonufriyev.DatasourceParser.ParseCMD;
 import com.umsl.vasylonufriyev.DatasourceParser.ParseFile;
@@ -27,10 +28,16 @@ public class Main {
             return;
         }
 
-        System.out.println("~~ read " + parsedData.length + " tokens. ~~");
-        for (String s: parsedData) {
-            System.out.println(s);
-        }
+        System.out.println("~~ read " + parsedData.length + " lines. ~~");
+
+        ProgramDataBuffer t = new ProgramDataBuffer(parsedData);
+
+        char var;
+        do {
+            var = t.GetNextCharacter();
+            System.out.println(var);
+        } while(var != '~');
+
         TestScanner ts = new TestScanner(parsedData);
     }
 
