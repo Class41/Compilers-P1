@@ -27,11 +27,7 @@ public class Main {
 
         System.out.println("~~ read " + parsedData.length + " tokens. ~~");
 
-        Tree binTree = new Tree().buildTree(parsedData); //build parse tree
 
-        binTree.printPreorder(OUTPUT_BASE_STRING); //traverses and prints preorder
-        binTree.printInorder(OUTPUT_BASE_STRING); //traverses and prints inorder
-        binTree.printPostorder(OUTPUT_BASE_STRING); //traverses and prints postorder
     }
 
     private static String[] classifyAndParseTokens(String[] cmdArgs) {

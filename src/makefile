@@ -7,7 +7,7 @@ datastructurespath = DataStructures/
 
 buildpath = $(basepath)$(main)$(compext) $(basepath)$(datasourceparserpath)$(compext) $(basepath)$(datastructurespath)$(compext)
 
-jarname = P0.jar
+jarname = P1.jar
 manifestpath = ./MANIFEST.MF
 jarbuilder = jar cfm $(jarname) $(manifestpath)
 buildext = *.class
