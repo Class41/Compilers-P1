@@ -36,7 +36,7 @@ public class Main {
         do {
             var = t.GetNextCharacter();
             System.out.println(var);
-        } while(var != '~');
+        } while(var != 0xe65);
 
         TestScanner ts = new TestScanner(parsedData);
     }
