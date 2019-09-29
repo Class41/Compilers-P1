@@ -70,7 +70,13 @@ class ParseCore {
         while (dataScanner.useDelimiter("\\n").hasNext()) { //split on new line
             String readData = dataScanner.next();
             if (readData.length() > 0) //check length for case where just spaces/extra spaces
-                data.add(readData);
+            {
+                if (readData.indexOf('#') >= 0) { //substring to remove comments while reading it
+                    data.add(readData.substring(0, readData.indexOf('#')));
+                } else {
+                    data.add(readData);
+                }
+            }
         }
 
         parseResult = new String[data.size()];

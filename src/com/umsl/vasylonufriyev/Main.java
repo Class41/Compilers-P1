@@ -28,7 +28,9 @@ public class Main {
         }
 
         System.out.println("~~ read " + parsedData.length + " tokens. ~~");
-
+        for (String s: parsedData) {
+            System.out.println(s);
+        }
         TestScanner ts = new TestScanner(parsedData);
     }
 
