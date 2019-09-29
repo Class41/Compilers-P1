@@ -12,6 +12,7 @@ import com.umsl.vasylonufriyev.DataStructures.Tree;
 import com.umsl.vasylonufriyev.DatasourceParser.ParseCMD;
 import com.umsl.vasylonufriyev.DatasourceParser.ParseFile;
 import com.umsl.vasylonufriyev.TokenScanner.KeywordTranslatorService;
+import com.umsl.vasylonufriyev.TokenScanner.TestScanner;
 
 public class Main {
     public static String OUTPUT_BASE_STRING = "";
@@ -27,6 +28,8 @@ public class Main {
         }
 
         System.out.println("~~ read " + parsedData.length + " tokens. ~~");
+
+        TestScanner ts = new TestScanner(parsedData);
     }
 
     private static String[] classifyAndParseTokens(String[] cmdArgs) {

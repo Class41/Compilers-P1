@@ -40,9 +40,6 @@ public class KeywordTranslatorService {
     }};
 
     public static String TryTranslate(String key) {
-        if(keywordDictionary.containsKey(key))
-            return keywordDictionary.get(key);
-        else
-            return null;
+        return keywordDictionary.getOrDefault(key, null);
     }
 }
