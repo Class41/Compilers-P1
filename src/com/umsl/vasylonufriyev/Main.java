@@ -11,6 +11,7 @@ package com.umsl.vasylonufriyev;
 import com.umsl.vasylonufriyev.DataStructures.Tree;
 import com.umsl.vasylonufriyev.DatasourceParser.ParseCMD;
 import com.umsl.vasylonufriyev.DatasourceParser.ParseFile;
+import com.umsl.vasylonufriyev.TokenScanner.KeywordTranslatorService;
 
 public class Main {
     public static String OUTPUT_BASE_STRING = "";
@@ -26,8 +27,6 @@ public class Main {
         }
 
         System.out.println("~~ read " + parsedData.length + " tokens. ~~");
-
-
     }
 
     private static String[] classifyAndParseTokens(String[] cmdArgs) {

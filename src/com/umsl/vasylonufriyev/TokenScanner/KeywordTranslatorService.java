@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class KeywordTranslatorService {
-    Map<String, String> keywordDictionary = new HashMap<String, String>(){{
+    private static Map<String, String> keywordDictionary = new HashMap<String, String>(){{
         this.put("start","START_TK");
         this.put("stop","STOP_TK");
         this.put("iterate","ITERATE_TK");
@@ -39,5 +39,10 @@ public class KeywordTranslatorService {
         this.put("]","SQUAREBRACKETCLOSE_TK");
     }};
 
-
+    public static String TryTranslate(String key) {
+        if(keywordDictionary.containsKey(key))
+            return keywordDictionary.get(key);
+        else
+            return null;
+    }
 }
