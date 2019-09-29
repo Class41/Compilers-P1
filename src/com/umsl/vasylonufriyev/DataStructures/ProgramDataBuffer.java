@@ -5,12 +5,14 @@ public class ProgramDataBuffer {
     private String[] data;
     private int lineNumber;
     private int charPosition;
-    private String tkValue;
+
+    private Token parsedTk;
 
     public ProgramDataBuffer(String[] data) {
         this.data = data;
         this.lineNumber = 0;
         this.charPosition = 0;
+        this.parsedTk = null;
     }
 
     public char GetNextCharacter() {
@@ -28,8 +30,12 @@ public class ProgramDataBuffer {
         }
     }
 
-    public void setTkValue(String tkValue) {
-        this.tkValue = tkValue;
+    public void SetParsedTk(Token Tk) { //Usd to pass back the token value parsed from raw input
+        this.parsedTk = Tk;
+    }
+
+    public Token GetParsedTk() {
+        return parsedTk;
     }
 
 }
