@@ -67,8 +67,8 @@ public class Scanner {
         char nextChar = data.GetNextCharacter();
         int nextColumn = 0;
 
-        while (state >= 0) {
-            nextColumn = KeywordTranslatorService.TryTranslateToColumnPosition(nextChar);
+        while (state >= 0) { //If state is not final, IE: greater than 0
+            nextColumn = KeywordTranslatorService.TryTranslateToColumnPosition(nextChar); //get next
 
             if (nextColumn < 1000) { //if a character fails to parse, it returns 1023. This will be handled further on
                 nextState = FAD[state][nextColumn];
