@@ -3,6 +3,15 @@ package com.umsl.vasylonufriyev.DataStructures;
 public class ProgramDataBuffer {
 
     private String[] data;
+
+    public int GetLineNumber() {
+        return lineNumber;
+    }
+
+    public int GetCharPosition() {
+        return charPosition;
+    }
+
     private int lineNumber;
     private int charPosition;
 

@@ -4,15 +4,16 @@ basepath = com/umsl/vasylonufriyev/
 main =
 datasourceparserpath = DatasourceParser/
 datastructurespath = DataStructures/
+tokenscannerpath = TokenScanner/
 
-buildpath = $(basepath)$(main)$(compext) $(basepath)$(datasourceparserpath)$(compext) $(basepath)$(datastructurespath)$(compext)
+buildpath = $(basepath)$(main)$(compext) $(basepath)$(datasourceparserpath)$(compext) $(basepath)$(datastructurespath)$(compext) $(basepath)$(tokenscannerpath)$(compext)
 
-jarname = P0.jar
+jarname = P1.jar
 manifestpath = ./MANIFEST.MF
 jarbuilder = jar cfm $(jarname) $(manifestpath)
 buildext = *.class
 
-jarbuildpath = $(basepath)$(main)$(buildext) $(basepath)$(datasourceparserpath)$(buildext) $(basepath)$(datastructurespath)$(buildext)
+jarbuildpath = $(basepath)$(main)$(buildext) $(basepath)$(datasourceparserpath)$(buildext) $(basepath)$(datastructurespath)$(buildext) $(basepath)$(tokenscannerpath)$(buildext)
 
 all:
 	$(compiler) $(buildpath) && \

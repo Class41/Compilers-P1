@@ -36,4 +36,8 @@ public class Token {
     public void SetTokenLine(int tokenLine) {
         this.tokenLine = tokenLine;
     }
+
+    public String ToString() {
+        return "{ tokenType: \"" + tokenType + "\", tokenValue:\"" + tokenValue + "\", tokenLine:\"" + tokenLine + "\" }";
+    }
 }

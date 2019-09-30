@@ -19,7 +19,7 @@ public class KeywordTranslatorService {
         this.put("let", "LET_TK");
     }};
 
-    public static String TryTranslateToToken(String key) {
+    public static String TryTranslateToToken(int key) {
         return keywordDictionary.getOrDefault(key, null);
     }
 
@@ -44,6 +44,9 @@ public class KeywordTranslatorService {
         this.put(-18, "CURLYBRACECLOSE_TK");
         this.put(-19, "SQUAREBRACKETOPEN_TK");
         this.put(-20, "SQUAREBRACKETCLOSE_TK");
+        this.put(-21, "IDENTIFIER_TK");
+        this.put(-22, "NUMBER_TK");
+        this.put(-23, "EOF_TK");
     }};
 
     public static String tryTranslateExitState(int key) {
@@ -71,7 +74,7 @@ public class KeywordTranslatorService {
         this.put((char) 0xe65, 20);
     }};
 
-
+    //Used to translate given character to the column it corresponds to in the state diagram for access
     public static int TryTranslateToColumnPosition(char key) {
         if (Character.isAlphabetic(key)) //If it is a letter, that is stored in column 0
             return 0;

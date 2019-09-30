@@ -13,6 +13,7 @@ import com.umsl.vasylonufriyev.DataStructures.Tree;
 import com.umsl.vasylonufriyev.DatasourceParser.ParseCMD;
 import com.umsl.vasylonufriyev.DatasourceParser.ParseFile;
 import com.umsl.vasylonufriyev.TokenScanner.KeywordTranslatorService;
+import com.umsl.vasylonufriyev.TokenScanner.Scanner;
 import com.umsl.vasylonufriyev.TokenScanner.TestScanner;
 
 public class Main {
@@ -31,15 +32,16 @@ public class Main {
         System.out.println("~~ read " + parsedData.length + " lines. ~~");
 
         ProgramDataBuffer t = new ProgramDataBuffer(parsedData);
-
-        char var;
-
-        do { //DELETE THIS TESTING
-            var = t.GetNextCharacter();
-            System.out.println(var);
-        } while(var != 0xe65);
-
-        TestScanner ts = new TestScanner(parsedData);
+        Scanner s = new Scanner();
+        try {
+            s.ScannerDriver(t);
+            System.out.println(t.GetParsedTk().ToString());
+        } catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.exit(-1);
+        }
+        //TestScanner ts = new TestScanner(parsedData);
     }
 
     private static String[] classifyAndParseTokens(String[] cmdArgs) {
