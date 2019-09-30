@@ -39,7 +39,44 @@ public class KeywordTranslatorService {
         this.put("]", "SQUAREBRACKETCLOSE_TK");
     }};
 
-    public static String TryTranslate(String key) {
+    public static String TryTranslateToToken(String key) {
         return keywordDictionary.getOrDefault(key, null);
     }
+
+    private static Map<Character, Integer> charColumnDictionary = new HashMap<Character, Integer>() {{
+        this.put('=', 2);
+        this.put('<', 3);
+        this.put('>', 4);
+        this.put(':', 5);
+        this.put('+', 6);
+        this.put('_', 7);
+        this.put('*', 8);
+        this.put('/', 9);
+        this.put('%', 10);
+        this.put('.', 11);
+        this.put('(', 12);
+        this.put(')', 13);
+        this.put(',', 14);
+        this.put('{', 15);
+        this.put('}', 16);
+        this.put('[', 17);
+        this.put(']', 18);
+        this.put((char)0xe65, 20);
+    }};
+
+
+    public static int TryTranslateToColumnPosition(char key) {
+        if(Character.isAlphabetic(key)) //If it is a letter, that is stored in column 0
+            return 0;
+        if(Character.isDigit(key)) //if it is a digit, it is stored in column 1
+            return 1;
+        if(Character.isWhitespace(key)) //If it is a whitespace, it is stored in column 19
+            return 19;
+
+        return charColumnDictionary.getOrDefault(key, -1); //If returns -1, invalid character detected.
+    }
+
+    private static Map<Integer, String> errorStatesDictionary = new HashMap<Integer, String>() {{
+        this.put(-1, "Invalid character has been detected within file.");
+    }};
 }
