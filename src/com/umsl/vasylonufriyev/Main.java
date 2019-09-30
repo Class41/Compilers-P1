@@ -33,7 +33,8 @@ public class Main {
         ProgramDataBuffer t = new ProgramDataBuffer(parsedData);
 
         char var;
-        do {
+
+        do { //DELETE THIS TESTING
             var = t.GetNextCharacter();
             System.out.println(var);
         } while(var != 0xe65);

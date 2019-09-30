@@ -73,10 +73,31 @@ public class KeywordTranslatorService {
         if(Character.isWhitespace(key)) //If it is a whitespace, it is stored in column 19
             return 19;
 
-        return charColumnDictionary.getOrDefault(key, -1); //If returns -1, invalid character detected.
+        return charColumnDictionary.getOrDefault(key, 1021); //If returns 1021, invalid character detected.
     }
 
     private static Map<Integer, String> errorStatesDictionary = new HashMap<Integer, String>() {{
-        this.put(-1, "Invalid character has been detected within file.");
+        this.put(1000, "Alpha is not allowed in attempted context");
+        this.put(1001, "Digit is not allowed in attempted context");
+        this.put(1002, "= is not allowed in attempted context");
+        this.put(1003, "< is not allowed in attempted context");
+        this.put(1004, "> is not allowed in attempted context");
+        this.put(1005, ": is not allowed in attempted context");
+        this.put(1006, "+ is not allowed in attempted context");
+        this.put(1007, "_ is not allowed in attempted context");
+        this.put(1008, "* is not allowed in attempted context");
+        this.put(1009, "/ is not allowed in attempted context");
+        this.put(1010, "% is not allowed in attempted context");
+        this.put(1011, ". is not allowed in attempted context");
+        this.put(1012, "( is not allowed in attempted context");
+        this.put(1013, ") is not allowed in attempted context");
+        this.put(1014,",is not allowed in attempted context");
+        this.put(1015, "{ is not allowed in attempted context");
+        this.put(1016, "} is not allowed in attempted context");
+        this.put(1017, "[ is not allowed in attempted context");
+        this.put(1018, "] is not allowed in attempted context");
+        this.put(1019, "Whitespace is not allowed in attempted context");
+        this.put(1020, "EOF is not allowed in attempted context");
+        this.put(1021, "Could not parse character");
     }};
 }
