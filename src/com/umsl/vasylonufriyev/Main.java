@@ -8,13 +8,10 @@ Description: Initial point of the program--contains the main function and comman
 
 package com.umsl.vasylonufriyev;
 
-import com.umsl.vasylonufriyev.DataStructures.ProgramDataBuffer;
-import com.umsl.vasylonufriyev.DataStructures.Tree;
+import com.umsl.vasylonufriyev.TokenScanner.ProgramDataBuffer;
 import com.umsl.vasylonufriyev.DatasourceParser.ParseCMD;
 import com.umsl.vasylonufriyev.DatasourceParser.ParseFile;
-import com.umsl.vasylonufriyev.TokenScanner.KeywordTranslatorService;
 import com.umsl.vasylonufriyev.TokenScanner.Scanner;
-import com.umsl.vasylonufriyev.TokenScanner.TestScanner;
 
 public class Main {
     public static String OUTPUT_BASE_STRING = "";

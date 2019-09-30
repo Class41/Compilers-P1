@@ -1,6 +1,5 @@
 package com.umsl.vasylonufriyev.TokenScanner;
 
-import com.umsl.vasylonufriyev.DataStructures.ProgramDataBuffer;
 import com.umsl.vasylonufriyev.DataStructures.Token;
 
 public class Scanner {

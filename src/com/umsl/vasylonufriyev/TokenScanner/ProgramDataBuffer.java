@@ -1,4 +1,6 @@
-package com.umsl.vasylonufriyev.DataStructures;
+package com.umsl.vasylonufriyev.TokenScanner;
+
+import com.umsl.vasylonufriyev.DataStructures.Token;
 
 public class ProgramDataBuffer {
 
