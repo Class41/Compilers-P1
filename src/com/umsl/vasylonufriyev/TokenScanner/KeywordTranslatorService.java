@@ -32,7 +32,7 @@ class KeywordTranslatorService {
         this.put(-6, "EQUALCOMPARE_TK");
         this.put(-7, "COLON_TK");
         this.put(-8, "PLUS_TK");
-        this.put(-9, "UNDERSCORE_TK");
+        this.put(-9, "MINUS_TK");
         this.put(-10, "MULT_TK");
         this.put(-11, "DIVIDE_TK");
         this.put(-12, "MODULO_TK");
@@ -59,7 +59,7 @@ class KeywordTranslatorService {
         this.put('>', 6);
         this.put(':', 7);
         this.put('+', 8);
-        this.put('_', 9);
+        this.put('-', 9);
         this.put('*', 10);
         this.put('/', 11);
         this.put('%', 12);
@@ -76,13 +76,13 @@ class KeywordTranslatorService {
 
     //Used to translate given character to the column it corresponds to in the state diagram for access
     static int TryTranslateToColumnPosition(char key) {
-        if (Character.isAlphabetic(key) && Character.isLowerCase(key)) //If it is a lowercase letter, that is stored in column 0
+        if (Character.isAlphabetic(key) && Character.isLowerCase(key)) //If it is a lowercase letter, that is stored in column 1 (starting at 0)
             return 1;
-        if (Character.isAlphabetic(key) && Character.isUpperCase(key)) //If it is a uppercase letter, that is stored in column 0
+        if (Character.isAlphabetic(key) && Character.isUpperCase(key)) //If it is a uppercase letter, that is stored in column 2
             return 2;
-        if (Character.isDigit(key)) //if it is a digit, it is stored in column 1
+        if (Character.isDigit(key)) //if it is a digit, it is stored in column 3
             return 3;
-        if (Character.isWhitespace(key)) //If it is a whitespace, it is stored in column 19
+        if (Character.isWhitespace(key)) //If it is a whitespace, it is stored in column 21
             return 21;
 
         return charColumnDictionary.getOrDefault(key, 1023); //If returns 1023, invalid character detected.
@@ -98,7 +98,7 @@ class KeywordTranslatorService {
         this.put(1006, "> is not allowed in attempted context");
         this.put(1007, ": is not allowed in attempted context");
         this.put(1008, "+ is not allowed in attempted context");
-        this.put(1009, "_ is not allowed in attempted context");
+        this.put(1009, "- is not allowed in attempted context");
         this.put(1010, "* is not allowed in attempted context");
         this.put(1011, "/ is not allowed in attempted context");
         this.put(1012, "% is not allowed in attempted context");
