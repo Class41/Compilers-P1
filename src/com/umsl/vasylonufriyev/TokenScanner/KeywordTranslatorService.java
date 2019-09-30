@@ -3,7 +3,7 @@ package com.umsl.vasylonufriyev.TokenScanner;
 import java.util.HashMap;
 import java.util.Map;
 
-public class KeywordTranslatorService {
+class KeywordTranslatorService {
     private static Map<String, String> keywordDictionary = new HashMap<String, String>() {{
         this.put("start", "START_TK");
         this.put("stop", "STOP_TK");
@@ -19,7 +19,7 @@ public class KeywordTranslatorService {
         this.put("let", "LET_TK");
     }};
 
-    public static String TryTranslateToToken(int key) {
+    static String TryTranslateToToken(String key) {
         return keywordDictionary.getOrDefault(key, null);
     }
 
@@ -49,7 +49,7 @@ public class KeywordTranslatorService {
         this.put(-23, "EOF_TK");
     }};
 
-    public static String tryTranslateExitState(int key) {
+    static String tryTranslateExitState(int key) {
         return exitStateDictionary.getOrDefault(key, null);
     }
 
@@ -75,7 +75,7 @@ public class KeywordTranslatorService {
     }};
 
     //Used to translate given character to the column it corresponds to in the state diagram for access
-    public static int TryTranslateToColumnPosition(char key) {
+    static int TryTranslateToColumnPosition(char key) {
         if (Character.isAlphabetic(key)) //If it is a letter, that is stored in column 0
             return 0;
         if (Character.isDigit(key)) //if it is a digit, it is stored in column 1
@@ -111,7 +111,7 @@ public class KeywordTranslatorService {
         this.put(1021, "Could not parse character");
     }};
 
-    public static String TryTranslateErrorCode(int code) {
+    static String TryTranslateErrorCode(int code) {
         return errorStatesDictionary.getOrDefault(code, "Error occurred but no error matched the code!");
     }
 

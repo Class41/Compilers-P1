@@ -36,8 +36,8 @@ public class Scanner {
             }
             if (nextState < 0) {
                 if (nextState == -21) { //Identifier token final state
-                    if (KeywordTranslatorService.TryTranslateToToken(state) != null) {
-                        data.SetParsedTk(new Token(KeywordTranslatorService.TryTranslateToToken(nextState), "", data.GetLineNumber()));
+                    if (KeywordTranslatorService.TryTranslateToToken(proccessedData) != null) {
+                        data.SetParsedTk(new Token(KeywordTranslatorService.TryTranslateToToken(proccessedData), "", data.GetLineNumber()));
                         return data;
                     } else {
                         data.SetParsedTk(new Token(KeywordTranslatorService.tryTranslateExitState(nextState), proccessedData, data.GetLineNumber()));

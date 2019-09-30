@@ -6,11 +6,11 @@ public class ProgramDataBuffer {
 
     private String[] data;
 
-    public int GetLineNumber() {
+    int GetLineNumber() {
         return lineNumber;
     }
 
-    public int GetCharPosition() {
+    int GetCharPosition() {
         return charPosition;
     }
 
@@ -26,7 +26,7 @@ public class ProgramDataBuffer {
         this.parsedTk = null;
     }
 
-    public char GetNextCharacter() {
+    char GetNextCharacter() {
         while (true) { //Keep going until we return something
             if (lineNumber < data.length) { //Visit all lines
                 if (charPosition < (data[lineNumber]).length()) { //Visit all chars on a line
@@ -41,7 +41,7 @@ public class ProgramDataBuffer {
         }
     }
 
-    public void SetParsedTk(Token Tk) { //Usd to pass back the token value parsed from raw input
+    void SetParsedTk(Token Tk) { //Usd to pass back the token value parsed from raw input
         this.parsedTk = Tk;
     }
 
