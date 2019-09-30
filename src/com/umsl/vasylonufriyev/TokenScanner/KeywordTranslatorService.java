@@ -17,30 +17,37 @@ public class KeywordTranslatorService {
         this.put("cond", "COND_TK");
         this.put("then", "THEN_TK");
         this.put("let", "LET_TK");
-        this.put("=", "ASSIGN_TK");
-        this.put("<", "LESSTHAN_TK");
-        this.put(">", "GREATERTHAN_TK");
-        this.put("<=", "LESSTHANEQUAL_TK");
-        this.put(">=", "GREATERTHANEQUAL_TK");
-        this.put("==", "EQUALCOMPARE_TK");
-        this.put(":", "COLON_TK");
-        this.put("+", "PLUS_TK");
-        this.put("_", "UNDERSCORE_TK");
-        this.put("*", "MULT_TK");
-        this.put("/", "DIVIDE_TK");
-        this.put("%", "MODULO_TK");
-        this.put(".", "MEMBER_TK");
-        this.put("(", "PARENTHESISOPEN_TK");
-        this.put(")", "PARENTHESISCLOSE_TK");
-        this.put(",", "COMMA_TK");
-        this.put("{", "CURLYBRACEOPEN_TK");
-        this.put("}", "CURLYBRACECLOSE_TK");
-        this.put("[", "SQUAREBRACKETOPEN_TK");
-        this.put("]", "SQUAREBRACKETCLOSE_TK");
     }};
 
     public static String TryTranslateToToken(String key) {
         return keywordDictionary.getOrDefault(key, null);
+    }
+
+    private static Map<Integer, String> exitStateDictionary = new HashMap<Integer, String>() {{
+        this.put(-1, "ASSIGN_TK");
+        this.put(-2, "LESSTHAN_TK");
+        this.put(-3, "GREATERTHAN_TK");
+        this.put(-4, "LESSTHANEQUAL_TK");
+        this.put(-5, "GREATERTHANEQUAL_TK");
+        this.put(-6, "EQUALCOMPARE_TK");
+        this.put(-7, "COLON_TK");
+        this.put(-8, "PLUS_TK");
+        this.put(-9, "UNDERSCORE_TK");
+        this.put(-10, "MULT_TK");
+        this.put(-11, "DIVIDE_TK");
+        this.put(-12, "MODULO_TK");
+        this.put(-13, "MEMBER_TK");
+        this.put(-14, "PARENTHESISOPEN_TK");
+        this.put(-15, "PARENTHESISCLOSE_TK");
+        this.put(-16, "COMMA_TK");
+        this.put(-17, "CURLYBRACEOPEN_TK");
+        this.put(-18, "CURLYBRACECLOSE_TK");
+        this.put(-19, "SQUAREBRACKETOPEN_TK");
+        this.put(-20, "SQUAREBRACKETCLOSE_TK");
+    }};
+
+    public static String tryTranslateExitState(int key) {
+        return exitStateDictionary.getOrDefault(key, null);
     }
 
     private static Map<Character, Integer> charColumnDictionary = new HashMap<Character, Integer>() {{
@@ -61,16 +68,16 @@ public class KeywordTranslatorService {
         this.put('}', 16);
         this.put('[', 17);
         this.put(']', 18);
-        this.put((char)0xe65, 20);
+        this.put((char) 0xe65, 20);
     }};
 
 
     public static int TryTranslateToColumnPosition(char key) {
-        if(Character.isAlphabetic(key)) //If it is a letter, that is stored in column 0
+        if (Character.isAlphabetic(key)) //If it is a letter, that is stored in column 0
             return 0;
-        if(Character.isDigit(key)) //if it is a digit, it is stored in column 1
+        if (Character.isDigit(key)) //if it is a digit, it is stored in column 1
             return 1;
-        if(Character.isWhitespace(key)) //If it is a whitespace, it is stored in column 19
+        if (Character.isWhitespace(key)) //If it is a whitespace, it is stored in column 19
             return 19;
 
         return charColumnDictionary.getOrDefault(key, 1021); //If returns 1021, invalid character detected.
@@ -91,7 +98,7 @@ public class KeywordTranslatorService {
         this.put(1011, ". is not allowed in attempted context");
         this.put(1012, "( is not allowed in attempted context");
         this.put(1013, ") is not allowed in attempted context");
-        this.put(1014,",is not allowed in attempted context");
+        this.put(1014, ",is not allowed in attempted context");
         this.put(1015, "{ is not allowed in attempted context");
         this.put(1016, "} is not allowed in attempted context");
         this.put(1017, "[ is not allowed in attempted context");
