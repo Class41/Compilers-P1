@@ -33,14 +33,15 @@ public class Main {
 
         ProgramDataBuffer t = new ProgramDataBuffer(parsedData);
         Scanner s = new Scanner();
-        try {
-            s.ScannerDriver(t);
-            System.out.println(t.GetParsedTk().ToString());
-        } catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.exit(-1);
-        }
+        do {
+            try {
+                s.ScannerDriver(t);
+                System.out.println(t.GetParsedTk().ToString());
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.exit(-1);
+            }
+        } while (t.GetParsedTk().GetTokenType() != "EOF_TK");
         //TestScanner ts = new TestScanner(parsedData);
     }
 

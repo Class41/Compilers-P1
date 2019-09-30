@@ -72,9 +72,9 @@ class ParseCore {
             if (readData.length() > 0) //check length for case where just spaces/extra spaces
             {
                 if (readData.indexOf('#') >= 0) { //substring to remove comments while reading it
-                    data.add((readData.substring(0, readData.indexOf('#'))) + "  "); //Adds spaces at the end as replace for new line
+                    data.add((readData.substring(0, readData.indexOf('#'))) + " "); //Adds spaces at the end as replace for new line
                 } else {
-                    data.add(readData + "  "); //Adds couple spaces at the end as replace for new line
+                    data.add(readData + " "); //Adds spaces at the end
                 }
             }
         }
