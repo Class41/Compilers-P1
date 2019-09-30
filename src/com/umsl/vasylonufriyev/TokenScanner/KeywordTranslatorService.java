@@ -54,61 +54,65 @@ class KeywordTranslatorService {
     }
 
     private static Map<Character, Integer> charColumnDictionary = new HashMap<Character, Integer>() {{
-        this.put('=', 2);
-        this.put('<', 3);
-        this.put('>', 4);
-        this.put(':', 5);
-        this.put('+', 6);
-        this.put('_', 7);
-        this.put('*', 8);
-        this.put('/', 9);
-        this.put('%', 10);
-        this.put('.', 11);
-        this.put('(', 12);
-        this.put(')', 13);
-        this.put(',', 14);
-        this.put('{', 15);
-        this.put('}', 16);
-        this.put('[', 17);
-        this.put(']', 18);
-        this.put((char) 0xe65, 20);
+        this.put('=', 4);
+        this.put('<', 5);
+        this.put('>', 6);
+        this.put(':', 7);
+        this.put('+', 8);
+        this.put('_', 9);
+        this.put('*', 10);
+        this.put('/', 11);
+        this.put('%', 12);
+        this.put('.', 13);
+        this.put('(', 14);
+        this.put(')', 15);
+        this.put(',', 16);
+        this.put('{', 17);
+        this.put('}', 18);
+        this.put('[', 19);
+        this.put(']', 20);
+        this.put((char) 0xe65, 22);
     }};
 
     //Used to translate given character to the column it corresponds to in the state diagram for access
     static int TryTranslateToColumnPosition(char key) {
-        if (Character.isAlphabetic(key)) //If it is a letter, that is stored in column 0
-            return 0;
-        if (Character.isDigit(key)) //if it is a digit, it is stored in column 1
+        if (Character.isAlphabetic(key) && Character.isLowerCase(key)) //If it is a lowercase letter, that is stored in column 0
             return 1;
+        if (Character.isAlphabetic(key) && Character.isUpperCase(key)) //If it is a uppercase letter, that is stored in column 0
+            return 2;
+        if (Character.isDigit(key)) //if it is a digit, it is stored in column 1
+            return 3;
         if (Character.isWhitespace(key)) //If it is a whitespace, it is stored in column 19
-            return 19;
+            return 21;
 
-        return charColumnDictionary.getOrDefault(key, 1021); //If returns 1021, invalid character detected.
+        return charColumnDictionary.getOrDefault(key, 1023); //If returns 1023, invalid character detected.
     }
 
     private static Map<Integer, String> errorStatesDictionary = new HashMap<Integer, String>() {{
-        this.put(1000, "Alpha is not allowed in attempted context");
-        this.put(1001, "Digit is not allowed in attempted context");
-        this.put(1002, "= is not allowed in attempted context");
-        this.put(1003, "< is not allowed in attempted context");
-        this.put(1004, "> is not allowed in attempted context");
-        this.put(1005, ": is not allowed in attempted context");
-        this.put(1006, "+ is not allowed in attempted context");
-        this.put(1007, "_ is not allowed in attempted context");
-        this.put(1008, "* is not allowed in attempted context");
-        this.put(1009, "/ is not allowed in attempted context");
-        this.put(1010, "% is not allowed in attempted context");
-        this.put(1011, ". is not allowed in attempted context");
-        this.put(1012, "( is not allowed in attempted context");
-        this.put(1013, ") is not allowed in attempted context");
-        this.put(1014, ",is not allowed in attempted context");
-        this.put(1015, "{ is not allowed in attempted context");
-        this.put(1016, "} is not allowed in attempted context");
-        this.put(1017, "[ is not allowed in attempted context");
-        this.put(1018, "] is not allowed in attempted context");
-        this.put(1019, "Whitespace is not allowed in attempted context");
-        this.put(1020, "EOF is not allowed in attempted context");
-        this.put(1021, "Could not parse character");
+        this.put(1000, "RESERVED. NOT ALLOWED IN CURRENT CONTEXT"); //RESERVED
+        this.put(1001, "LowerAlpha is not allowed in attempted context");
+        this.put(1002, "UpperAlpha is not allowed in attempted context");
+        this.put(1003, "Digit is not allowed in attempted context");
+        this.put(1004, "= is not allowed in attempted context");
+        this.put(1005, "< is not allowed in attempted context");
+        this.put(1006, "> is not allowed in attempted context");
+        this.put(1007, ": is not allowed in attempted context");
+        this.put(1008, "+ is not allowed in attempted context");
+        this.put(1009, "_ is not allowed in attempted context");
+        this.put(1010, "* is not allowed in attempted context");
+        this.put(1011, "/ is not allowed in attempted context");
+        this.put(1012, "% is not allowed in attempted context");
+        this.put(1013, ". i s not allowed in attempted context");
+        this.put(1014, "( is not allowed in attempted context");
+        this.put(1015, ") is not allowed in attempted context");
+        this.put(1016, ",is not allowed in attempted context");
+        this.put(1017, "{ is not allowed in attempted context");
+        this.put(1018, "} is not allowed in attempted context");
+        this.put(1019, "[ is not allowed in attempted context");
+        this.put(1020, "] is not allowed in attempted context");
+        this.put(1021, "Whitespace is not allowed in attempted context");
+        this.put(1022, "EOF is not allowed in attempted context");
+        this.put(1023, "Could not parse character");
     }};
 
     static String TryTranslateErrorCode(int code) {

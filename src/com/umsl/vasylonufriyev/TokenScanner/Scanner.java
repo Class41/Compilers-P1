@@ -5,13 +5,15 @@ import com.umsl.vasylonufriyev.DataStructures.Token;
 public class Scanner {
     /*
      * State array. Initial values for each row are:
-     * 1000, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020
+     * 1000, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022, 1023
      */
     int[][] FAD = new int[][]{
             //Initial state. If number, transfer to number state.
-            {1000, 1, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 0, -23},
+            {1000, 2, 1002, 1, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 0, -23, 1023},
             //Number state. Keep getting integer values until any other character comes by.
-            {-22, 1, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22}
+            {1000, -22, -22, 1, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22, -22},
+            //Identifier state. Keep getting letters/numbers until any other character comes by.
+            {1000, 2, 2, 2, -21, -21, -21, -21, -21, -21, -21, -21, -21, -21, -21, -21, -21, -21, -21, -21, -21, -21, -21, -21}
     };
 
     public ProgramDataBuffer ScannerDriver(ProgramDataBuffer data) throws Exception {
@@ -24,7 +26,7 @@ public class Scanner {
         while (state >= 0) {
             nextColumn = KeywordTranslatorService.TryTranslateToColumnPosition(nextChar);
 
-            if (nextColumn < 1000) { //if a character fails to parse, it returns 1021. This will be handled further on
+            if (nextColumn < 1000) { //if a character fails to parse, it returns 1023. This will be handled further on
                 nextState = FAD[state][nextColumn];
             } else {
                 nextState = nextColumn;
