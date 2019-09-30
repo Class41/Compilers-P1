@@ -47,6 +47,7 @@ class KeywordTranslatorService {
         this.put(-21, "IDENTIFIER_TK");
         this.put(-22, "NUMBER_TK");
         this.put(-23, "EOF_TK");
+        this.put(-24, "SEMICOLON_TK");
     }};
 
     static String tryTranslateExitState(int key) {
@@ -71,7 +72,8 @@ class KeywordTranslatorService {
         this.put('}', 18);
         this.put('[', 19);
         this.put(']', 20);
-        this.put((char) 0xe65, 22);
+        this.put((char) 0x7f, 22);
+        this.put(';', 24);
     }};
 
     //Used to translate given character to the column it corresponds to in the state diagram for access
@@ -113,6 +115,7 @@ class KeywordTranslatorService {
         this.put(1021, "Whitespace is not allowed in attempted context");
         this.put(1022, "EOF is not allowed in attempted context");
         this.put(1023, "Could not parse character");
+        this.put(1024, "; is not allowed in attempted context");
     }};
 
     static String TryTranslateErrorCode(int code) {

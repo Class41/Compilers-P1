@@ -43,7 +43,7 @@ public class ProgramDataBuffer {
                     charPosition = 0;
                 }
             } else {
-                return 0xe65; //Symbolizes EOF
+                return 0x7f; //Symbolizes EOF
             }
         }
     }

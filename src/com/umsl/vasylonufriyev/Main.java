@@ -12,6 +12,7 @@ import com.umsl.vasylonufriyev.TokenScanner.ProgramDataBuffer;
 import com.umsl.vasylonufriyev.DatasourceParser.ParseCMD;
 import com.umsl.vasylonufriyev.DatasourceParser.ParseFile;
 import com.umsl.vasylonufriyev.TokenScanner.Scanner;
+import com.umsl.vasylonufriyev.TokenScanner.TestScanner;
 
 public class Main {
     public static String OUTPUT_BASE_STRING = "";
@@ -27,19 +28,7 @@ public class Main {
         }
 
         System.out.println("~~ read " + parsedData.length + " lines. ~~");
-
-        ProgramDataBuffer t = new ProgramDataBuffer(parsedData);
-        Scanner s = new Scanner();
-        do {
-            try {
-                s.ScannerDriver(t);
-                System.out.println(t.GetParsedTk().ToString());
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                System.exit(-1);
-            }
-        } while (t.GetParsedTk().GetTokenType() != "EOF_TK");
-        //TestScanner ts = new TestScanner(parsedData);
+        TestScanner ts = new TestScanner(parsedData);
     }
 
     private static String[] classifyAndParseTokens(String[] cmdArgs) {
