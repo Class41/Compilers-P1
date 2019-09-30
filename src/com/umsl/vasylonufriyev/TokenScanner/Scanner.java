@@ -40,13 +40,16 @@ public class Scanner {
                 if (nextState == -21) { //Identifier token final state
                     if (KeywordTranslatorService.TryTranslateToToken(proccessedData) != null) {
                         data.SetParsedTk(new Token(KeywordTranslatorService.TryTranslateToToken(proccessedData), "", data.GetLineNumber()));
+                        data.UngetNextCharacter();
                         return data;
                     } else {
                         data.SetParsedTk(new Token(KeywordTranslatorService.tryTranslateExitState(nextState), proccessedData, data.GetLineNumber()));
+                        data.UngetNextCharacter();
                         return data;
                     }
                 } else {
                     data.SetParsedTk(new Token(KeywordTranslatorService.tryTranslateExitState(nextState), proccessedData, data.GetLineNumber()));
+                    data.UngetNextCharacter();
                     return data;
                 }
             } else {

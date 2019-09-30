@@ -14,6 +14,8 @@ public class ProgramDataBuffer {
         return charPosition;
     }
 
+    private int savedLineNumber;
+    private int savedCharPosition;
     private int lineNumber;
     private int charPosition;
 
@@ -23,10 +25,15 @@ public class ProgramDataBuffer {
         this.data = data;
         this.lineNumber = 0;
         this.charPosition = 0;
+        this.savedCharPosition = 0;
+        this.savedLineNumber = 0;
         this.parsedTk = null;
     }
 
     char GetNextCharacter() {
+        savedLineNumber = lineNumber;
+        savedCharPosition = charPosition;
+
         while (true) { //Keep going until we return something
             if (lineNumber < data.length) { //Visit all lines
                 if (charPosition < (data[lineNumber]).length()) { //Visit all chars on a line
@@ -39,6 +46,11 @@ public class ProgramDataBuffer {
                 return 0xe65; //Symbolizes EOF
             }
         }
+    }
+
+    void UngetNextCharacter() {
+        lineNumber = savedLineNumber;
+        charPosition = savedCharPosition;
     }
 
     void SetParsedTk(Token Tk) { //Usd to pass back the token value parsed from raw input
