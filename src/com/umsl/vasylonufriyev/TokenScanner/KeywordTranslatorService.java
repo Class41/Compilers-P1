@@ -100,4 +100,9 @@ public class KeywordTranslatorService {
         this.put(1020, "EOF is not allowed in attempted context");
         this.put(1021, "Could not parse character");
     }};
+
+    public static String TryTranslateErrorCode(int code) {
+        return errorStatesDictionary.getOrDefault(code, "Error occurred but no error matched the code!");
+    }
+
 }
