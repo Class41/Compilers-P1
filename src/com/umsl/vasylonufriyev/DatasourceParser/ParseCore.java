@@ -67,7 +67,7 @@ class ParseCore {
     private void readInData(Scanner dataScanner) {
         List<String> data = new ArrayList<String>();
 
-        while (dataScanner.hasNext()) { //split on new line
+        while (dataScanner.useDelimiter("\\n").hasNext()) { //split on new line
             String readData = dataScanner.next();
             if (readData.length() > 0) //check length for case where just spaces/extra spaces
             {
