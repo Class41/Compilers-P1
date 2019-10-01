@@ -25,7 +25,7 @@ public class Main {
         }
 
         System.out.println("~~ read " + parsedData.length + " lines. ~~");
-        TestScanner ts = new TestScanner(parsedData);
+        TestScanner ts = new TestScanner(parsedData); //Create the scanner driver
     }
 
     private static String[] classifyAndParseTokens(String[] cmdArgs) {

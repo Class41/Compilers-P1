@@ -1,3 +1,11 @@
+/*
+Author: Vasyl Onufriyev
+Date: 10.1.19
+Class: CS4280
+Instructor: Professor Janikow
+Description: Token object used by the scanner
+*/
+
 package com.umsl.vasylonufriyev.DataStructures;
 
 public class Token {

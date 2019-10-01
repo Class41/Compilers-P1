@@ -1,23 +1,34 @@
+/*
+Author: Vasyl Onufriyev
+Date: 10.1.19
+Class: CS4280
+Instructor: Professor Janikow
+Description: Holds filtered data and provides an easy-to-use interface for the scanner.
+Handles getting/returning characters, and storing line numbers.
+This object will be passed back and forth between the caller of the scanner and the scanner itself to keep
+track of position in file and also transmit the token that was parsed.
+*/
+
 package com.umsl.vasylonufriyev.TokenScanner;
 
 import com.umsl.vasylonufriyev.DataStructures.Token;
 
 class ProgramDataBuffer {
 
-    private String[] data;
+    private String[] data; //Contains filtered data free of comments
 
     int GetLineNumber() {
         return lineNumber;
-    }
+    } //Getter
 
     int GetCharPosition() {
         return charPosition;
-    }
+    } //Getter
 
-    private int savedLineNumber;
-    private int savedCharPosition;
-    private int lineNumber;
-    private int charPosition;
+    private int savedLineNumber; //Saved previous position for easy rollback
+    private int savedCharPosition; //Saved previous position for easy rollback
+    private int lineNumber; //Line number currently on
+    private int charPosition; //Character position on the line
 
     private Token parsedTk;
 
@@ -48,17 +59,17 @@ class ProgramDataBuffer {
         }
     }
 
-    void UngetNextCharacter() {
+    void UngetNextCharacter() { //Return the character back and don't consume it
         lineNumber = savedLineNumber;
         charPosition = savedCharPosition;
     }
 
     void SetParsedTk(Token Tk) { //Usd to pass back the token value parsed from raw input
         this.parsedTk = Tk;
-    }
+    } //Saves the token generated
 
     Token GetParsedTk() {
         return parsedTk;
-    }
+    } //Returns token generated
 
 }

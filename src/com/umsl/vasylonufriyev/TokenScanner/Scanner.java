@@ -1,3 +1,11 @@
+/*
+Author: Vasyl Onufriyev
+Date: 10.1.19
+Class: CS4280
+Instructor: Professor Janikow
+Description: Scans given character input and translates to tokens using a table
+*/
+
 package com.umsl.vasylonufriyev.TokenScanner;
 
 import com.umsl.vasylonufriyev.DataStructures.Token;
@@ -61,14 +69,14 @@ public class Scanner {
     };
 
     ProgramDataBuffer ScannerDriver(ProgramDataBuffer data) throws Exception {
-        StringBuilder proccessedData = new StringBuilder();
-        int state = 0;
-        int nextState;
-        char nextChar = data.GetNextCharacter();
-        int nextColumn;
+        StringBuilder proccessedData = new StringBuilder(); //Store data we have accumulated so far
+        int state = 0; //Current state
+        int nextState; //Next state
+        char nextChar = data.GetNextCharacter(); //Returns next character from filtered data
+        int nextColumn; //Holds which column in the array will be used with this specific character
 
         while (state >= 0) { //If state is not final, IE: greater than 0
-            nextColumn = KeywordTranslatorService.TryTranslateToColumnPosition(nextChar); //get nextex
+            nextColumn = KeywordTranslatorService.TryTranslateToColumnPosition(nextChar); //get next column
 
             if (nextColumn < 1000) { //if a character fails to parse, it returns 1023. This will be handled further on
                 nextState = FAD[state][nextColumn];
@@ -76,29 +84,29 @@ public class Scanner {
                 nextState = nextColumn;
             }
 
-            if (nextState >= 1000) {
+            if (nextState >= 1000) { //If there is an error
                 throw new Exception("SCANNER ERROR:ERR" + nextState + ":LN" + data.GetLineNumber() + ":CH" + data.GetCharPosition() + ": "
                         + KeywordTranslatorService.TryTranslateErrorCode(nextState));
             }
-            if (nextState < 0) {
+            if (nextState < 0) { //If this is an exit state
                 if (nextState == -21) { //Identifier token final state
-                    if (KeywordTranslatorService.TryTranslateToToken(proccessedData.toString()) != null) {
+                    if (KeywordTranslatorService.TryTranslateToToken(proccessedData.toString()) != null) { //Keyword
                         data.SetParsedTk(new Token(KeywordTranslatorService.TryTranslateToToken(proccessedData.toString()), "", data.GetLineNumber()));
                         data.UngetNextCharacter();
                         return data;
-                    } else {
+                    } else { //Identifier
                         data.SetParsedTk(new Token(KeywordTranslatorService.tryTranslateExitState(nextState), proccessedData.toString(), data.GetLineNumber()));
                         data.UngetNextCharacter();
                         return data;
                     }
-                } else {
+                } else { //Other exit state
                     data.SetParsedTk(new Token(KeywordTranslatorService.tryTranslateExitState(nextState), proccessedData.toString(), data.GetLineNumber()));
                     data.UngetNextCharacter();
                     return data;
                 }
-            } else {
+            } else { //Continue reading
                 state = nextState;
-                if(nextChar != ' ')
+                if(nextChar != ' ') //Don't append spaces if there are any
                     proccessedData.append(nextChar);
                 nextChar = data.GetNextCharacter();
             }

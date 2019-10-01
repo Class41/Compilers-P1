@@ -1,10 +1,18 @@
+/*
+Author: Vasyl Onufriyev
+Date: 10.1.19
+Class: CS4280
+Instructor: Professor Janikow
+Description: Used by the scanner for translating various exit states, determining which columns to go to, and errors
+*/
+
 package com.umsl.vasylonufriyev.TokenScanner;
 
 import java.util.HashMap;
 import java.util.Map;
 
 class KeywordTranslatorService {
-    private static Map<String, String> keywordDictionary = new HashMap<>() {{
+    private static Map<String, String> keywordDictionary = new HashMap<>() {{ //Keyword token translator
         this.put("start", "START_TK");
         this.put("stop", "STOP_TK");
         this.put("iterate", "ITERATE_TK");
@@ -23,7 +31,7 @@ class KeywordTranslatorService {
         return keywordDictionary.getOrDefault(key, null);
     }
 
-    private static Map<Integer, String> exitStateDictionary = new HashMap<>() {{
+    private static Map<Integer, String> exitStateDictionary = new HashMap<>() {{ //Operator translator
         this.put(-1, "ASSIGN_TK");
         this.put(-2, "LESSTHAN_TK");
         this.put(-3, "GREATERTHAN_TK");
@@ -54,7 +62,7 @@ class KeywordTranslatorService {
         return exitStateDictionary.getOrDefault(key, null);
     }
 
-    private static Map<Character, Integer> charColumnDictionary = new HashMap<>() {{
+    private static Map<Character, Integer> charColumnDictionary = new HashMap<>() {{ //Character to column value translator
         this.put('=', 4);
         this.put('<', 5);
         this.put('>', 6);
@@ -90,7 +98,7 @@ class KeywordTranslatorService {
         return charColumnDictionary.getOrDefault(key, 1023); //If returns 1023, invalid character detected.
     }
 
-    private static Map<Integer, String> errorStatesDictionary = new HashMap<>() {{
+    private static Map<Integer, String> errorStatesDictionary = new HashMap<>() {{ //Error code translator
         this.put(1000, "RESERVED. NOT ALLOWED IN CURRENT CONTEXT"); //RESERVED
         this.put(1001, "LowerAlpha is not allowed in attempted context");
         this.put(1002, "UpperAlpha is not allowed in attempted context");
