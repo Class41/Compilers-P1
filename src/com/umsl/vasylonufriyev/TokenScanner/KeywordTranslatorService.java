@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 class KeywordTranslatorService {
-    private static Map<String, String> keywordDictionary = new HashMap<String, String>() {{
+    private static Map<String, String> keywordDictionary = new HashMap<>() {{
         this.put("start", "START_TK");
         this.put("stop", "STOP_TK");
         this.put("iterate", "ITERATE_TK");
@@ -23,7 +23,7 @@ class KeywordTranslatorService {
         return keywordDictionary.getOrDefault(key, null);
     }
 
-    private static Map<Integer, String> exitStateDictionary = new HashMap<Integer, String>() {{
+    private static Map<Integer, String> exitStateDictionary = new HashMap<>() {{
         this.put(-1, "ASSIGN_TK");
         this.put(-2, "LESSTHAN_TK");
         this.put(-3, "GREATERTHAN_TK");
@@ -54,7 +54,7 @@ class KeywordTranslatorService {
         return exitStateDictionary.getOrDefault(key, null);
     }
 
-    private static Map<Character, Integer> charColumnDictionary = new HashMap<Character, Integer>() {{
+    private static Map<Character, Integer> charColumnDictionary = new HashMap<>() {{
         this.put('=', 4);
         this.put('<', 5);
         this.put('>', 6);
@@ -90,7 +90,7 @@ class KeywordTranslatorService {
         return charColumnDictionary.getOrDefault(key, 1023); //If returns 1023, invalid character detected.
     }
 
-    private static Map<Integer, String> errorStatesDictionary = new HashMap<Integer, String>() {{
+    private static Map<Integer, String> errorStatesDictionary = new HashMap<>() {{
         this.put(1000, "RESERVED. NOT ALLOWED IN CURRENT CONTEXT"); //RESERVED
         this.put(1001, "LowerAlpha is not allowed in attempted context");
         this.put(1002, "UpperAlpha is not allowed in attempted context");

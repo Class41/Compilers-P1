@@ -8,14 +8,11 @@ Description: Initial point of the program--contains the main function and comman
 
 package com.umsl.vasylonufriyev;
 
-import com.umsl.vasylonufriyev.TokenScanner.ProgramDataBuffer;
 import com.umsl.vasylonufriyev.DatasourceParser.ParseCMD;
 import com.umsl.vasylonufriyev.DatasourceParser.ParseFile;
-import com.umsl.vasylonufriyev.TokenScanner.Scanner;
 import com.umsl.vasylonufriyev.TokenScanner.TestScanner;
 
 public class Main {
-    public static String OUTPUT_BASE_STRING = "";
 
     public static void main(String[] args) {
         String[] parsedData = classifyAndParseTokens(args);
@@ -38,16 +35,10 @@ public class Main {
             case 0: //if there is no filename provided
                 ParseCMD cmdInputParser = new ParseCMD();
                 dataSet = cmdInputParser.getParseResult();
-                Main.OUTPUT_BASE_STRING = "tree";
                 break;
             case 1: //if a filename is provided
                 ParseFile fileInputParser = new ParseFile(cmdArgs[0]);
                 dataSet = fileInputParser.getParseResult();
-
-                if (cmdArgs[0].endsWith(".fs19")) //check if the extension is already present
-                    Main.OUTPUT_BASE_STRING = cmdArgs[0].substring(0, cmdArgs[0].length() - 5);
-                else
-                    Main.OUTPUT_BASE_STRING = cmdArgs[0];
 
                 break;
             default: //if more than 1 parameter is provided (filename)

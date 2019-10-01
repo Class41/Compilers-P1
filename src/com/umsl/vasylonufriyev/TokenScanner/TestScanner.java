@@ -12,6 +12,6 @@ public class TestScanner {
                 System.out.println(e.getMessage());
                 System.exit(-1);
             }
-        } while (t.GetParsedTk().GetTokenType() != "EOF_TK");
+        } while (!t.GetParsedTk().GetTokenType().equals("EOF_TK"));
     }
 }

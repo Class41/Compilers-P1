@@ -2,7 +2,7 @@ package com.umsl.vasylonufriyev.TokenScanner;
 
 import com.umsl.vasylonufriyev.DataStructures.Token;
 
-public class ProgramDataBuffer {
+class ProgramDataBuffer {
 
     private String[] data;
 
@@ -21,7 +21,7 @@ public class ProgramDataBuffer {
 
     private Token parsedTk;
 
-    public ProgramDataBuffer(String[] data) {
+    ProgramDataBuffer(String[] data) {
         this.data = data;
         this.lineNumber = 0;
         this.charPosition = 0;
@@ -57,7 +57,7 @@ public class ProgramDataBuffer {
         this.parsedTk = Tk;
     }
 
-    public Token GetParsedTk() {
+    Token GetParsedTk() {
         return parsedTk;
     }
 
