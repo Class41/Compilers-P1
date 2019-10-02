@@ -27,7 +27,7 @@ class KeywordTranslatorService {
         this.put("let", "LET_TK");
     }};
 
-    static String TryTranslateToToken(String key) {
+    static String tryTranslateToToken(String key) {
         return keywordDictionary.getOrDefault(key, null);
     }
 
@@ -85,11 +85,17 @@ class KeywordTranslatorService {
     }};
 
     //Used to translate given character to the column it corresponds to in the state diagram for access
-    static int TryTranslateToColumnPosition(char key) {
+    static int tryTranslateToColumnPosition(char key) {
         if (Character.isAlphabetic(key) && Character.isLowerCase(key)) //If it is a lowercase letter, that is stored in column 1 (starting at 0)
-            return 1;
+            if(key >= 'a' && key <= 'z') //check against english alphabet
+                return 1;
+            else
+                return 1023;
         if (Character.isAlphabetic(key) && Character.isUpperCase(key)) //If it is a uppercase letter, that is stored in column 2
-            return 2;
+            if(key >= 'A' && key <= 'Z') //Check if in english alphabet
+                return 2;
+            else
+                return 1023;
         if (Character.isDigit(key)) //if it is a digit, it is stored in column 3
             return 3;
         if (Character.isWhitespace(key)) //If it is a whitespace, it is stored in column 21
@@ -126,7 +132,7 @@ class KeywordTranslatorService {
         this.put(1024, "; is not allowed in attempted context");
     }};
 
-    static String TryTranslateErrorCode(int code) {
+    static String tryTranslateErrorCode(int code) {
         return errorStatesDictionary.getOrDefault(code, "Error occurred but no error matched the code!");
     }
 

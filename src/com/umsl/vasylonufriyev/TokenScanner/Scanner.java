@@ -68,15 +68,15 @@ public class Scanner {
             {1000, -24, -24, -24, -24, -24, -24, -24, -24, -24, -24, -24, -24, -24, -24, -24, -24, -24, -24, -24, -24, -24, -24, -24, -24},
     };
 
-    ProgramDataBuffer ScannerDriver(ProgramDataBuffer data) throws Exception {
+    ProgramDataBuffer scannerDriver(ProgramDataBuffer data) throws Exception {
         StringBuilder proccessedData = new StringBuilder(); //Store data we have accumulated so far
         int state = 0; //Current state
         int nextState; //Next state
-        char nextChar = data.GetNextCharacter(); //Returns next character from filtered data
+        char nextChar = data.getNextCharacter(); //Returns next character from filtered data
         int nextColumn; //Holds which column in the array will be used with this specific character
 
         while (state >= 0) { //If state is not final, IE: greater than 0
-            nextColumn = KeywordTranslatorService.TryTranslateToColumnPosition(nextChar); //get next column
+            nextColumn = KeywordTranslatorService.tryTranslateToColumnPosition(nextChar); //get next column
 
             if (nextColumn < 1000) { //if a character fails to parse, it returns 1023. This will be handled further on
                 nextState = FAD[state][nextColumn];
@@ -85,30 +85,30 @@ public class Scanner {
             }
 
             if (nextState >= 1000) { //If there is an error
-                throw new Exception("SCANNER ERROR:ERR" + nextState + ":LN" + data.GetLineNumber() + ":CH" + data.GetCharPosition() + ": "
-                        + KeywordTranslatorService.TryTranslateErrorCode(nextState));
+                throw new Exception("SCANNER ERROR:ERR" + nextState + ":LN" + data.getLineNumber() + ":CH" + data.getCharPosition() + ": "
+                        + KeywordTranslatorService.tryTranslateErrorCode(nextState));
             }
             if (nextState < 0) { //If this is an exit state
                 if (nextState == -21) { //Identifier token final state
-                    if (KeywordTranslatorService.TryTranslateToToken(proccessedData.toString()) != null) { //Keyword
-                        data.SetParsedTk(new Token(KeywordTranslatorService.TryTranslateToToken(proccessedData.toString()), "", data.GetLineNumber()));
-                        data.UngetNextCharacter();
+                    if (KeywordTranslatorService.tryTranslateToToken(proccessedData.toString()) != null) { //Keyword
+                        data.setParsedTk(new Token(KeywordTranslatorService.tryTranslateToToken(proccessedData.toString()), "", data.getLineNumber()));
+                        data.ungetNextCharacter();
                         return data;
                     } else { //Identifier
-                        data.SetParsedTk(new Token(KeywordTranslatorService.tryTranslateExitState(nextState), proccessedData.toString(), data.GetLineNumber()));
-                        data.UngetNextCharacter();
+                        data.setParsedTk(new Token(KeywordTranslatorService.tryTranslateExitState(nextState), proccessedData.toString(), data.getLineNumber()));
+                        data.ungetNextCharacter();
                         return data;
                     }
                 } else { //Other exit state
-                    data.SetParsedTk(new Token(KeywordTranslatorService.tryTranslateExitState(nextState), proccessedData.toString(), data.GetLineNumber()));
-                    data.UngetNextCharacter();
+                    data.setParsedTk(new Token(KeywordTranslatorService.tryTranslateExitState(nextState), proccessedData.toString(), data.getLineNumber()));
+                    data.ungetNextCharacter();
                     return data;
                 }
             } else { //Continue reading
                 state = nextState;
                 if(nextChar != ' ') //Don't append spaces if there are any
                     proccessedData.append(nextChar);
-                nextChar = data.GetNextCharacter();
+                nextChar = data.getNextCharacter();
             }
         }
 

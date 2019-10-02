@@ -17,14 +17,6 @@ class ProgramDataBuffer {
 
     private String[] data; //Contains filtered data free of comments
 
-    int GetLineNumber() {
-        return lineNumber;
-    } //Getter
-
-    int GetCharPosition() {
-        return charPosition;
-    } //Getter
-
     private int savedLineNumber; //Saved previous position for easy rollback
     private int savedCharPosition; //Saved previous position for easy rollback
     private int lineNumber; //Line number currently on
@@ -41,7 +33,7 @@ class ProgramDataBuffer {
         this.parsedTk = null;
     }
 
-    char GetNextCharacter() {
+    char getNextCharacter() {
         savedLineNumber = lineNumber;
         savedCharPosition = charPosition;
 
@@ -59,17 +51,22 @@ class ProgramDataBuffer {
         }
     }
 
-    void UngetNextCharacter() { //Return the character back and don't consume it
+    void ungetNextCharacter() { //Return the character back and don't consume it
         lineNumber = savedLineNumber;
         charPosition = savedCharPosition;
     }
 
-    void SetParsedTk(Token Tk) { //Usd to pass back the token value parsed from raw input
+    void setParsedTk(Token Tk) { //Usd to pass back the token value parsed from raw input
         this.parsedTk = Tk;
     } //Saves the token generated
 
-    Token GetParsedTk() {
+    Token getParsedTk() {
         return parsedTk;
     } //Returns token generated
-
+    int getLineNumber() {
+        return lineNumber;
+    } //Getter
+    int getCharPosition() {
+        return charPosition;
+    } //Getter
 }

@@ -14,12 +14,12 @@ public class TestScanner {
         Scanner s = new Scanner(); //My file scanner
         do {
             try {
-                s.ScannerDriver(t); //Try to parse and retrieve token of next item in file
-                System.out.println(t.GetParsedTk().ToString()); //print on success
+                s.scannerDriver(t); //Try to parse and retrieve token of next item in file
+                System.out.println(t.getParsedTk().toString()); //print on success
             } catch (Exception e) {
                 System.out.println(e.getMessage()); //Invalid action performed, quit
                 System.exit(-1);
             }
-        } while (!t.GetParsedTk().GetTokenType().equals("EOF_TK"));
+        } while (!t.getParsedTk().getTokenType().equals("EOF_TK"));
     }
 }

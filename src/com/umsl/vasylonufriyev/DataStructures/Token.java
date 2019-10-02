@@ -21,31 +21,32 @@ public class Token {
 
     public Token() { }
 
-    public String GetTokenType() {
+    public String getTokenType() {
         return tokenType;
     }
 
-    public void SetTokenType(String tokenType) {
+    public void setTokenType(String tokenType) {
         this.tokenType = tokenType;
     }
 
-    public String GetTokenValue() {
+    public String getTokenValue() {
         return tokenValue;
     }
 
-    public void SetTokenValue(String tokenValue) {
+    public void setTokenValue(String tokenValue) {
         this.tokenValue = tokenValue;
     }
 
-    public int GetTokenLine() {
+    public int getTokenLine() {
         return tokenLine;
     }
 
-    public void SetTokenLine(int tokenLine) {
+    public void setTokenLine(int tokenLine) {
         this.tokenLine = tokenLine;
     }
 
-    public String ToString() {
+    @Override
+    public String toString() {
         return "{ tokenType: \"" + tokenType + "\", tokenValue:\"" + tokenValue + "\", tokenLine:\"" + tokenLine + "\" }";
     }
 }
