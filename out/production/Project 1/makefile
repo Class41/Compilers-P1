@@ -8,7 +8,7 @@ tokenscannerpath = TokenScanner/
 
 buildpath = $(basepath)$(main)$(compext) $(basepath)$(datasourceparserpath)$(compext) $(basepath)$(datastructurespath)$(compext) $(basepath)$(tokenscannerpath)$(compext)
 
-jarname = P1.jar
+jarname = scanner.jar
 manifestpath = ./MANIFEST.MF
 jarbuilder = jar cfm $(jarname) $(manifestpath)
 buildext = *.class
