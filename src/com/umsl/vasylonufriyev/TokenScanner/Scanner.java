@@ -83,22 +83,22 @@ public class Scanner {
             }
 
             if (nextState >= 1000) { //If there is an error
-                throw new Exception("SCANNER ERROR:ERR" + nextState + ":LN" + data.getLineNumber() + ":CH" + data.getCharPosition() + ": "
+                throw new Exception("SCANNER ERROR:ERR" + nextState + ":LN" + (data.getLineNumber() + 1) + ":CH" + data.getCharPosition() + ": "
                         + KeywordTranslatorService.tryTranslateErrorCode(nextState));
             }
             if (nextState < 0) { //If this is an exit state
                 if (nextState == -21) { //Identifier token final state
                     if (KeywordTranslatorService.tryTranslateToToken(proccessedData.toString()) != null) { //Keyword
-                        data.setParsedTk(new Token(KeywordTranslatorService.tryTranslateToToken(proccessedData.toString()), "", data.getLineNumber()));
+                        data.setParsedTk(new Token(KeywordTranslatorService.tryTranslateToToken(proccessedData.toString()), "", data.getLineNumber() + 1));
                         data.ungetNextCharacter();
                         return data;
                     } else { //Identifier
-                        data.setParsedTk(new Token(KeywordTranslatorService.tryTranslateExitState(nextState), proccessedData.toString(), data.getLineNumber()));
+                        data.setParsedTk(new Token(KeywordTranslatorService.tryTranslateExitState(nextState), proccessedData.toString(), data.getLineNumber() + 1));
                         data.ungetNextCharacter();
                         return data;
                     }
                 } else { //Other exit state
-                    data.setParsedTk(new Token(KeywordTranslatorService.tryTranslateExitState(nextState), proccessedData.toString(), data.getLineNumber()));
+                    data.setParsedTk(new Token(KeywordTranslatorService.tryTranslateExitState(nextState), proccessedData.toString(), data.getLineNumber() + 1));
                     data.ungetNextCharacter();
                     return data;
                 }
